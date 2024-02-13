@@ -25,7 +25,7 @@ namespace 没有意义的组成部分
             {
                 keyValuePairs.Clear();
                 long j = 2;
-                while (a[i]!=1)
+                while (a[i]!=1 && j * j < a[i])
                 {
                     if (a[i]%j == 0)
                     {
