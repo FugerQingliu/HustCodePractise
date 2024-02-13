@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自动售货机", "自动�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "向量", "向量\向量.csproj", "{358ED30D-4E81-4CB7-9CC4-BF59C8A597B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "没有意义的组成部分", "没有意义的组成部分\没有意义的组成部分.csproj", "{8B9B8576-41DF-4B10-994D-617D8E9A6E60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{358ED30D-4E81-4CB7-9CC4-BF59C8A597B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358ED30D-4E81-4CB7-9CC4-BF59C8A597B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358ED30D-4E81-4CB7-9CC4-BF59C8A597B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9B8576-41DF-4B10-994D-617D8E9A6E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9B8576-41DF-4B10-994D-617D8E9A6E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9B8576-41DF-4B10-994D-617D8E9A6E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9B8576-41DF-4B10-994D-617D8E9A6E60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
