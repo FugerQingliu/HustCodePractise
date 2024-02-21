@@ -54,191 +54,105 @@ namespace 世界是一个巨大的二分
                 }
             }
             int[] answer = new int[m];
-            int cnt = 0 , left = 0 , right = 0 , middle = 0;
-            bool flag = false;
-            for(int i = 0; i < m ; i++)
+            int left, right;
+            for (int i = 0; i < m ; i++)
             {
                 switch (checks[i].ty)
                 {
                     case 1:
-                        cnt = 0;
-                        flag = false;
-                        for(left = 0 , right = n - 1; left <= right;)
-                        {
-                            middle = (left + right) / 2;
-                            if (ints[middle] > checks[i].x)
-                                right = middle - 1;
-                            else if (ints[middle] < checks[i].x)
-                                left = middle + 1;
-                            else
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag)
-                        {
-                            for (int j = middle; j < n; j++)
-                            {
-                                if (ints[j] == checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                            for (int j = middle-1; j >= 0; j--)
-                            {
-                                if (ints[j] == checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                        }
-                        answer[i] = cnt;
+                        left = BiggerOrEqual(ints, checks[i].x);
+                        right = LessOrEqual(ints, checks[i].x);
+                        if(right >= left)
+                            answer[i] = right - left + 1;
+                        else
+                            answer[i] = 0;
                         break;
                     case 2:
-                        cnt = 0;
-                        flag = false;
-                        for (left = 0, right = n - 1; left <= right;)
-                        {
-                            middle = (left + right) / 2;
-                            if (ints[middle] < checks[i].x)
-                                left = middle + 1;
-                            else if (ints[middle] > checks[i].y)
-                                right = middle - 1;
-                            else
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag)
-                        {
-                            for (int j = middle; j < n; j++)
-                            {
-                                if (ints[j] <= checks[i].y)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                            for (int j = middle-1; j >= 0; j--)
-                            {
-                                if (ints[j] >= checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                        }
-                        answer[i] = cnt;
+                        left = BiggerOrEqual(ints, checks[i].x);
+                        right = LessOrEqual(ints, checks[i].y);
+                        if (right >= left)
+                            answer[i] = right - left + 1;
+                        else
+                            answer[i] = 0;
                         break;
                     case 3:
-                        cnt = 0;
-                        flag = false;
-                        for (left = 0, right = n - 1; left <= right;)
-                        {
-                            middle = (left + right) / 2;
-                            if (ints[middle] < checks[i].x)
-                                left = middle + 1;
-                            else if (ints[middle] >= checks[i].y)
-                                right = middle - 1;
-                            else
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag)
-                        {
-                            for (int j = middle; j < n; j++)
-                            {
-                                if (ints[j] < checks[i].y)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                            for (int j = middle - 1; j >= 0; j--)
-                            {
-                                if (ints[j] >= checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                        }
-                        answer[i] = cnt;
+                        left = BiggerOrEqual(ints, checks[i].x);
+                        right = LessOrEqual(ints, checks[i].y);
+                        while (ints[right] == checks[i].y && right > 0)
+                            right--;
+                        if (right > left)
+                            answer[i] = right - left + 1;
+                        else
+                            answer[i] = 0;
                         break;
                     case 4:
-                        cnt = 0;
-                        flag = false;
-                        for (left = 0, right = n - 1; left <= right;)
-                        {
-                            middle = (left + right) / 2;
-                            if (ints[middle] <= checks[i].x)
-                                left = middle + 1;
-                            else if (ints[middle] > checks[i].y)
-                                right = middle - 1;
-                            else
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag)
-                        {
-                            for (int j = middle; j < n; j++)
-                            {
-                                if (ints[j] <= checks[i].y)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                            for (int j = middle - 1; j >= 0; j--)
-                            {
-                                if (ints[j] > checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                        }
-                        answer[i] = cnt;
+                        left = BiggerOrEqual(ints, checks[i].x);
+                        right = LessOrEqual(ints, checks[i].y);
+                        while (ints[left] == checks[i].x && left < ints.Length - 1)
+                            left ++;
+                        if (right > left)
+                            answer[i] = right - left + 1;
+                        else
+                            answer[i] = 0;
                         break;
                     case 5:
-                        cnt = 0;
-                        flag = false;
-                        for (left = 0, right = n - 1; left <= right;)
-                        {
-                            middle = (left + right) / 2;
-                            if (ints[middle] <= checks[i].x)
-                                left = middle + 1;
-                            else if (ints[middle] >= checks[i].y)
-                                right = middle - 1;
-                            else
-                            {
-                                flag = true;
-                                break;
-                            }
-                        }
-                        if (flag)
-                        {
-                            for (int j = middle; j < n; j++)
-                            {
-                                if (ints[j] < checks[i].y)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                            for (int j = middle - 1; j >= 0; j--)
-                            {
-                                if (ints[j] > checks[i].x)
-                                    cnt++;
-                                else
-                                    break;
-                            }
-                        }
-                        answer[i] = cnt;
+                        left = BiggerOrEqual(ints, checks[i].x);
+                        right = LessOrEqual(ints, checks[i].y);
+                        while (ints[right] == checks[i].y && right > 0)
+                            right--;
+                        while (ints[left] == checks[i].x && left < ints.Length - 1)
+                            left++;
+                        if (right > left)
+                            answer[i] = right - left + 1;
+                        else
+                            answer[i] = 0;
                         break;
                 }
             }
             foreach (int i in answer)
                 Console.WriteLine(i);
+        }
+        static int BinarySearch(int[] input, int b)
+        {
+            int left = 0 , right = input.Length - 1 ;
+            int middle = (left + right)/2 ;
+            while(left < right) 
+            {
+                if (input[middle] == b)
+                    return middle;
+                else if (input[middle] < b)
+                {
+                    left = middle + 1;
+                    middle = (left + right) / 2;
+                }
+                else
+                {
+                    right = middle - 1;
+                    middle = (left + right) / 2;
+                }
+            }
+            return middle;
+        }
+        static int BiggerOrEqual(int[] input, int b)
+        {
+            int given = BinarySearch(input, b);
+            while (input[given] >= b && given > 0)
+                given--;
+            if(input[given] >= b)
+                return given;
+            else
+                return given + 1;
+        }
+        static int LessOrEqual(int[] input, int b)
+        {
+            int given = BinarySearch(input , b);
+            int len = input.Length - 1;
+            while (input[given] <= b && given < len)
+                given++;
+            if (input[given] <= b)
+                return given;
+            else
+                return given - 1;
         }
     }
 }
